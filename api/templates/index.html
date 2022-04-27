@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Recommendations</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Recommendations</h1>
+    <h2> Hello user {{ user }}</h2>
+
+    <form action="/" method="POST">
+        <p> <h3> Enter ID: </h3> </p> 
+        <p> <input type="text" name = 'name'> </p>
+        <p> <input type="submit" value = 'Login'> </p>
+    </form>
+
+    <table align="center">
+        <tr> <th> Today's articles </th> </tr>
+
+        {% for row in rows %}
+        <tr> <td> <a href="{{ row[1] }}"> {{ row[0] }} </a> </td> </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+body {
+    font-family: comicsans;
+    margin-left: 100;
+}
+
+table {
+    border: solid 1px #000;
+}
+
+td {
+    border-top: solid 1px #000;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
