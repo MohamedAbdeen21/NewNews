@@ -7,7 +7,7 @@ def run():
     cur = con.cursor()
     cur.execute("""SELECT * FROM articles WHERE date = %s""",(properties.today_string,))
 
-    with open(f'/home/mohamed/Semester6/PBL/newsscraper/xmlscraper/{properties.today_string}.csv', 'w', encoding='utf8') as file:
+    with open(f'/home/mohamed/Semester6/PBL/newsscraper/xmlscraper/csvfiles/{properties.today_string}.csv', 'w', encoding='utf8') as file:
         writer = csv.writer(file, delimiter=',')
         writer.writerow(['id','url','title','text','count','date','tags'])
         writer.writerows(cur.fetchall())

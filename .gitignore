@@ -3,6 +3,7 @@
 /newsscraper.code-workspace
 **/__pycache__/
 /venv/
+/xmlscraper/csvfiles/
 !/airflow
 /airflow/**
 !/airflow/dags/
