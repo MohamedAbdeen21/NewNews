@@ -13,7 +13,7 @@ words_to_delete = [
     'To revist this article, visit My Profile, then']
 def clean_text(text):
     if any(word == text for word in words_to_delete): return ''
-    return re.sub("[ |\|]{2,}","",text.replace('\n','').replace('\t','').replace('\r','').replace(',','').replace('"','').replace('&quot;','').replace(';',''))
+    return re.sub('&quot|\t|\n|\r|,|"|;|\||  ',"",text)
 
 class XmlscraperItem(scrapy.Item):
     url = scrapy.Field(output_processor = TakeFirst())
@@ -21,4 +21,5 @@ class XmlscraperItem(scrapy.Item):
     title = scrapy.Field(input_processor = MapCompose(clean_text), output_processor = TakeFirst())
     count = scrapy.Field(input_processor = MapCompose(clean_text,str.split), output_processor = Compose(len))
     date = scrapy.Field(output_processor = TakeFirst())
+    tags = scrapy.Field(output_processor = Join(','))
     pass

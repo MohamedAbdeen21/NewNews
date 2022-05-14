@@ -41,8 +41,8 @@ class XmlscraperPipeline:
 
     def process_item(self, item, spider):
         try:
-            self.cur.execute("""INSERT INTO articles(url,title,text,count,date) VALUES(%s,%s,%s,%s,%s)""",
-                        [item['url'],item['title'],item['text'],item['count'],item['date']])
+            self.cur.execute("""INSERT INTO articles(url,title,text,count,date,tags) VALUES(%s,%s,%s,%s,%s,%s)""",
+                        [item['url'],item['title'],item['text'],item['count'],item['date'],item['tags']])
             self.con.commit()
             print('Added article')
         except KeyError as exception:

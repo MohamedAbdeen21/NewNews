@@ -13,7 +13,6 @@ websiteLinks = [
 'http://www.npr.org/rss/rss.php?id=1019',
 'http://feeds.nytimes.com/nyt/rss/Technology',
 'http://feeds.wired.com/wired/index',
-'http://feeds.nature.com/nature/rss/current',
 'http://feeds.sciencedaily.com/sciencedaily',
 'http://www.smartbrief.com/servlet/rss?b=ASCD',
 'http://www.npr.org/rss/rss.php?id=1013',

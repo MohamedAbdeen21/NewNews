@@ -1,0 +1,90 @@
+:root{
+    --primary-color: #5cdb95;
+    --secondary-color: #05386b;
+    --accent-color: #379683;
+    --offwhite-color: #edf5e1;
+}
+
+body{
+    background-image: url("388135_632_canny_pic.jpg");
+    background-size:contain;
+    background-color: var(--primary-color);
+    margin: 0px;
+}
+
+.nav{
+    background-color: var(--primary-color);
+    margin: 0px;
+    padding: 1.25em;
+    
+    a{
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-size: 2em;
+    }
+
+    span {
+        color: var(--offwhite-color);
+    }
+}
+
+
+.sub-title{
+text-align: center;
+text-transform: uppercase;
+letter-spacing: 5px;
+font-weight: bold;
+color: gray;
+padding: 2em;
+}
+
+.left-col{
+    display: flex;
+}
+
+.daily{
+    background-color: var(--accent-color);
+    padding: 2em;
+
+    a{
+        color: #ece3d7;
+    }
+}
+
+table{
+    color: #FFFFFF;
+    margin: auto;
+}
+
+.recommend{
+    font-size: larger;
+    background-color: var(--primary-color);
+    a{
+        text-decoration: none;
+    }
+
+    h3{
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        color: gray;
+        padding: 1em;
+    }
+
+    .card{
+        background-color: var(--accent-color);
+        margin: 1.25em;
+        border-radius: 1em;
+        padding: 2em;
+        .title{
+            color: var(--secondary-color)
+        }
+        .summary{
+            color: #000000;
+        }
+        .domain{
+            color: gray;
+        }
+    }
+}

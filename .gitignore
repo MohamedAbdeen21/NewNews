@@ -1,4 +1,8 @@
 /scraper.log
 /access_token.txt
+/newsscraper.code-workspace
 **/__pycache__/
 /venv/
+!/airflow
+/airflow/**
+!/airflow/dags/

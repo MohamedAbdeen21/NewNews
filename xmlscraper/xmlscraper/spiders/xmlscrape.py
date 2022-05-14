@@ -1,20 +1,21 @@
 import scrapy
 from xmlscraper.rssfeeds import websiteLinks
+import xmlscraper.properties as properties
 
 from datetime import datetime
 from dateutil import parser as timeparser
-import feedparser
-
-import logging
-from scrapy.crawler import CrawlerProcess
-from xmlscraper.xmlscraper.items import XmlscraperItem
-from scrapy.loader import ItemLoader
-
-from scrapy.http import TextResponse
-import requests
 
 from scrapy.utils.project import get_project_settings
-import xmlscraper.properties as properties
+from scrapy.crawler import CrawlerProcess
+from scrapy.loader import ItemLoader
+from scrapy.http import TextResponse
+
+from xmlscraper.xmlscraper.items import XmlscraperItem
+
+import requests
+import feedparser
+import logging
+
 
 logging.basicConfig(filename='scraper.log')
 
@@ -49,6 +50,11 @@ class XmlscrapeSpider(scrapy.Spider):
                     loader.add_css('text', "body p::text")
                     loader.add_value('date',time)
                     loader.add_css('count', "body p::text" )
+                    if 'tags' in entry.keys():
+                        loader.add_value('tags', [tag.get('term') for tag in entry['tags']])
+                    else:
+                        loader.add_value('tags', ['NULL'])
+
                     print(f"Article\t{self.count}: {entry['link']}")
                     yield loader.load_item()
                 elif not uniqueness_flag:
@@ -61,18 +67,19 @@ class XmlscrapeSpider(scrapy.Spider):
             yield None
 
 
-settings = get_project_settings()
-# settings.update({"FEEDS":{"sample2.csv":{
-#     "format":"csv",
-#     "encoding": "utf-8",
-#     "overwrite": True,
-#     "fields": ["url","title","text","count","date"],
-#     }}})
-process = CrawlerProcess(settings)
+def run():
+    settings = get_project_settings()
+    # settings.update({"FEEDS":{"sample2.csv":{
+    #     "format":"csv",
+    #     "encoding": "utf-8",
+    #     "overwrite": True,
+    #     "fields": ["url","title","text","count","date"],
+    #     }}})
+    process = CrawlerProcess(settings)
 
-logging.getLogger('scrapy').propagate = True
-logging.getLogger('protego').propagate = False
-logging.getLogger('urllib3').propagate = False
+    logging.getLogger('scrapy').propagate = False
+    logging.getLogger('protego').propagate = False
+    logging.getLogger('urllib3').propagate = False
 
-process.crawl(XmlscrapeSpider)
-process.start()
+    process.crawl(XmlscrapeSpider)
+    process.start()

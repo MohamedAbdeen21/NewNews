@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="nav">
+    <a href="/">MyNew<span>News</span></a>
+</div>
+
+<h1 class="sub-title">One place, for all your news</h1>
+
+<div class="recommend">
+    <form action="/" method="POST">
+        <p> <h2> Change your ID: </h2>
+        <input type="text" name = 'name'>
+        <input type="submit" value = 'Login'> </p>
+    </form>
+        <h3> Articles for you </h3>
+        {% for row in recommendation %}
+        <a href="{{'/redirect/' + row['url']}}" target="_blank">
+            <div class="card">
+                <div class="title"> {{ row['title'] }} </div>
+                <div class="info">
+                    <div class="summary">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores perspiciatis atque quo numquam, perferendis repudiandae culpa tenetur consequuntur voluptatum dolores soluta esse odit recusandae eius exercitationem placeat officiis quis laboriosam.
+                    </div>
+                    <div class="domain"> Washingtonpost </div>    
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="daily">
+    <table>
+        <tr> 
+            <th> Today's articles </th>
+        </tr>
+
+        {% for row in daily_rows %}
+        <tr> 
+            <td> <a href="{{ row['url'] }}"> {{ row['title'] }} </a> </td>
+            <!-- <td> {{ [row['tags'].split(',')[0] if row['tags'] != "NULL" else "No Tags"][0] }} </td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
